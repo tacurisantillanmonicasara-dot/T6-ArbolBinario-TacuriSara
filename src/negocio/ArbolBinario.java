@@ -55,4 +55,40 @@ public class ArbolBinario<T> {
         }
         return buscar(actual.getDerecho(), dato);
     }
+
+    public int contarNodos() {
+        return contarNodos(raiz);
+    }
+
+    private int contarNodos(Nodo<T> actual) {
+        if (actual == null) {
+            return 0;
+        }
+        return 1 + contarNodos(actual.getIzquierdo()) + contarNodos(actual.getDerecho());
+    }
+
+    public int contarHojas() {
+        return contarHojas(raiz);
+    }
+
+    private int contarHojas(Nodo<T> actual) {
+        if (actual == null) {
+            return 0;
+        }
+        if (actual.esHoja()) {
+            return 1;
+        }
+        return contarHojas(actual.getIzquierdo()) + contarHojas(actual.getDerecho());
+    }
+
+    public int altura() {
+        return altura(raiz);
+    }
+
+    private int altura(Nodo<T> actual) {
+        if (actual == null) {
+            return -1;
+        }
+        return 1 + Math.max(altura(actual.getIzquierdo()), altura(actual.getDerecho()));
+    }
 }
