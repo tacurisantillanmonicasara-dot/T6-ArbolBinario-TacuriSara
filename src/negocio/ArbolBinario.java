@@ -91,4 +91,27 @@ public class ArbolBinario<T> {
         }
         return 1 + Math.max(altura(actual.getIzquierdo()), altura(actual.getDerecho()));
     }
+
+    public void mostrarArbol() {
+        if (raiz == null) {
+            System.out.println("El arbol esta vacio");
+            return;
+        }
+        System.out.println(raiz.getDato());
+        mostrarHijos(raiz, "");
+    }
+
+    private void mostrarHijos(Nodo<T> actual, String prefijo) {
+        Nodo<T> izq = actual.getIzquierdo();
+        Nodo<T> der = actual.getDerecho();
+        if (izq != null) {
+            boolean ultimo = der == null;
+            System.out.println(prefijo + (ultimo ? "\\-- " : "+-- ") + izq.getDato());
+            mostrarHijos(izq, prefijo + (ultimo ? "    " : "|   "));
+        }
+        if (der != null) {
+            System.out.println(prefijo + "\\-- " + der.getDato());
+            mostrarHijos(der, prefijo + "    ");
+        }
+    }
 }
